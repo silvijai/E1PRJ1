@@ -1,0 +1,24 @@
+# --- AVR CLI Build Artifacts (Your macOS workflow) ---
+*.o
+*.elf
+*.hex
+*.map
+*.lst
+
+# --- MPLAB X IDE Files (Your group's Windows workflow) ---
+# Ignore the 'dist' and 'build' folders created by MPLAB
+build/
+dist/
+nbproject/private/
+nbproject/Makefile-*
+nbproject/Package-*
+
+# --- macOS System Files ---
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# --- Optional: Just/Make specific ---
+# If you use a tool like 'bear' to generate compile commands for VS Code
+compile_commands.json
+.cache/
