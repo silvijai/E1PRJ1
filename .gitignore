@@ -1,24 +1,74 @@
-# --- AVR CLI Build Artifacts (Your macOS workflow) ---
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# debug information files
+*.dwo
+
+# AVR CLI Build Artifacts
 *.o
 *.elf
 *.hex
 *.map
 *.lst
 
-# --- MPLAB X IDE Files (Your group's Windows workflow) ---
-# Ignore the 'dist' and 'build' folders created by MPLAB
+# MPLAB X IDE Files 
 build/
 dist/
 nbproject/private/
 nbproject/Makefile-*
 nbproject/Package-*
 
-# --- macOS System Files ---
+# macOS System Files
 .DS_Store
 .AppleDouble
 .LSOverride
-
-# --- Optional: Just/Make specific ---
-# If you use a tool like 'bear' to generate compile commands for VS Code
-compile_commands.json
-.cache/
