@@ -1,47 +1,22 @@
-# --- Project Configuration ---
-MCU          = atmega2560
-F_CPU        = 16000000UL
-BAUD         = 115200
+# Configuration
+MCU    = atmega2560
+F_CPU  = 16000000UL
+PORT   = /dev/cu.usbmodem*
+CFLAGS = -mmcu=$(MCU) -DF_CPU=$(F_CPU) -Os -Wall
 
-# --- Toolchain ---
-CC           = avr-gcc
-OBJCOPY      = avr-objcopy
-AVRDUDE      = avrdude
+# Rules
+all: main.hex
 
-# --- Hardware/Flashing ---
-PROGRAMMER   = wiring
-PORT         = /dev/cu.usbmodem* 
+main.elf: $(wildcard *.c)
+	avr-gcc $(CFLAGS) -o $@ $^
 
-# --- Files ---
-TARGET       = main
-# Automatically finds all .c files in the directory so you don't 
-# have to manually update this when your group adds files.
-SRCS         = $(wildcard *.c)
-OBJS         = $(SRCS:.c=.o)
+main.hex: main.elf
+	avr-objcopy -O ihex -R .eeprom $< $@
 
-# --- Flags ---
-CFLAGS       = -mmcu=$(MCU) -DF_CPU=$(F_CPU) -Os -Wall -Wextra
-LDFLAGS      = -mmcu=$(MCU)
-
-# --- Rules ---
-
-# 'build' and 'all' now do the same thing
-all: $(TARGET).hex
-build: all
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(TARGET).elf: $(OBJS)
-	$(CC) $(LDFLAGS) -o $@ $(OBJS)
-
-$(TARGET).hex: $(TARGET).elf
-	$(OBJCOPY) -O ihex -R .eeprom $< $@
-
-flash: $(TARGET).hex
-	$(AVRDUDE) -v -p $(MCU) -c $(PROGRAMMER) -P $(PORT) -b $(BAUD) -D -U flash:w:$<:i
+flash: main.hex
+	avrdude -v -p $(MCU) -c wiring -P $(PORT) -b 115200 -D -U flash:w:$<:i
 
 clean:
-	rm -f *.o *.elf *.hex
+	rm -f *.elf *.hex
 
-.PHONY: all build flash clean
+.PHONY: all flash clean
