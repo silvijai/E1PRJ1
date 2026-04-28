@@ -8,13 +8,16 @@
 #include "tests.h"
 #include "motor.h"
 #include "track.h"
+#include "sensor.h"
 
 int main(void) {
   // Inits
   motorInit();
+  sensorInit();
 
   // Test scripts (Comment out when not in use)
   // motorTest();
+  // sensorTest()
 
   runTrack();
 
