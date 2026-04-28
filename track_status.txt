@@ -1,0 +1,28 @@
+
+Motor functions:
+
+(Bil startes manuelt)
+Count: 0-5   Drives forward.
+
+(refleksbrik 6)
+Count: 6     Car stops and begins driving backwards.
+
+(refleksbrik 5)
+Count: 8     Car stops and drives forward 
+
+(refleksbrik 7)
+Count: 11     Car stops withing the next 1.5 meters
+
+____________________________________
+
+Sound functions:
+
+Count: 1        Start Sound
+Count: 2-10     Refleksbrik Sound
+Count: 11       End Sound
+
+__________________________________
+
+Light functions:
+
+Steal from motor functions
