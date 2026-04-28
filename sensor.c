@@ -31,5 +31,5 @@ void sensorInit() {
   EIMSK |= (1 << INT0) | (1 << INT1);
 
   // Global interrupt enable
-  SEI();
+  sei();
 }
