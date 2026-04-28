@@ -16,6 +16,5 @@
 void motor_init(void);
 void motor_set_speed(int level);
 void motor_set_direction(bool forward);
-void motor_test();
 
 #endif

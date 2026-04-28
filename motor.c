@@ -14,10 +14,10 @@ void motor_init(void) {
   OCR1A = 0;
 }
 
-void motor_set_speed(int s) {
+void motor_set_speed(uint8_t s) {
   speed = s;
 
-  if (s > 1) {
+  if (s == 0) {
     // Disconnect pin from timer
     TCCR1A &= ~(1 << COM1A1);
     OCR1A = 0;
@@ -46,32 +46,4 @@ void motor_set_direction(bool forward) {
   motor_set_speed(temp_speed);
 }
 
-// Test function, for testing the component seperately from the rest of the loop
-void motor_test() {
-    // Setup Input Buttons (PA2, PA3)
-    DDRA &= ~((1 << PA2) | (1 << PA3)); // Set as Inputs
-    PORTA |= (1 << PA2) | (1 << PA3);  // Enable internal Pull-ups
-    
-    bool direction = true;
-    int test_speed = 0;
 
-    while (1) {
-        // BUTTON 1: Change Direction
-        if (!(PINA & (1 << PA2))) {
-            _delay_ms(50);
-            direction = !direction;
-            motor_set_direction(direction);
-            while (!(PINA & (1 << PA2))); // Wait for release
-            _delay_ms(50);
-        }
-
-        // BUTTON 2: Cycle Speed
-        if (!(PINA & (1 << PA3))) {
-            _delay_ms(50);
-            test_speed += 64;
-            motor_set_speed(test_speed);
-            while (!(PINA & (1 << PA3))); // Wait for release
-            _delay_ms(50);
-        }
-    }
-}
