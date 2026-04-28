@@ -13,8 +13,8 @@
 #define DIR_PORT PORTA
 #define DIR_PIN PA0
 
-void motor_init(void);
-void motor_set_speed(int level);
-void motor_set_direction(bool forward);
+void motorInit(void);
+void motorSetSpeed(uint8_t level);
+void motorSetDirection(bool forward);
 
 #endif

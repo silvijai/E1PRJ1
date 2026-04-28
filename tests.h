@@ -1,10 +1,11 @@
-#ifndef TRACK_H_
-#define TRACK_H_
+#ifndef TESTS_H_
+#define TESTS_H_
 
 #include <avr/io.h>
 #include <util/delay.h>
 #include <stdbool.h>
+#include "motor.h"
 
-void runTrack(void);
+void motorTest(void);
 
 #endif

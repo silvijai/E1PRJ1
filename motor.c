@@ -2,7 +2,7 @@
 
 static int speed = 0;
 
-void motor_init(void) {
+void motorInit(void) {
   PWM_DDR |= (1 << PWM_PIN);
   DIR_DDR |= (1 << DIR_PIN);
 
@@ -14,7 +14,7 @@ void motor_init(void) {
   OCR1A = 0;
 }
 
-void motor_set_speed(uint8_t s) {
+void motorSetSpeed(uint8_t s) {
   speed = s;
 
   if (s == 0) {
@@ -30,9 +30,9 @@ void motor_set_speed(uint8_t s) {
   }
 }
 
-void motor_set_direction(bool forward) {
-  int temp_speed = speed;
-  motor_set_speed(0);
+void motorSetDirection(bool forward) {
+  int tempSpeed = speed;
+  motorSetSpeed(0);
   _delay_ms(150);
 
   if (forward) {
@@ -43,7 +43,7 @@ void motor_set_direction(bool forward) {
 
   _delay_ms(100);
 
-  motor_set_speed(temp_speed);
+  motorSetSpeed(tempSpeed);
 }
 
 
