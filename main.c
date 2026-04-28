@@ -6,6 +6,7 @@
 
 // drivers
 #include "motor.h"
+#include "track.h"
 
 int main(void) {
   // Inits
@@ -14,7 +15,10 @@ int main(void) {
   // Test scripts (Comment out when not in use)
   motor_test();
 
-  while (1) {
-    // do cool logic here
+  runTrack();
+
+  // Done
+  while(1) {
+    // finish here please :3
   }
 }
