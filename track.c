@@ -1,7 +1,7 @@
 #include "track.h"
 
 bool running = true;
-int count = 0;
+uint8_t count = 0; // needs to be connected with sensor
 
 void runTrack() {
 	while (running) {

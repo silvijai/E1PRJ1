@@ -1,6 +1,6 @@
 #include "motor.h"
 
-static int speed = 0;
+static uint8_t speed = 0;
 
 void motorInit(void) {
   PWM_DDR |= (1 << PWM_PIN);
@@ -31,7 +31,7 @@ void motorSetSpeed(uint8_t s) {
 }
 
 void motorSetDirection(bool forward) {
-  int tempSpeed = speed;
+  uint8_t tempSpeed = speed;
   motorSetSpeed(0);
   _delay_ms(150);
 
