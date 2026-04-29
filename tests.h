@@ -7,5 +7,6 @@
 #include "motor.h"
 
 void motorTest(void);
+void sensorTest(void);
 
 #endif
