@@ -13,8 +13,7 @@ ISR(TIMER3_COMPA_vect) {
 
 //Incrementerer count og slukker for sensorne, starter timer til at starte dem igen.
 void sensorIncrement() {
-	countDisplay(); //TEST KODE SLET
-	
+
 	EIMSK &= ~((1 << INT0) | (1 << INT1)); //slukker for sensorne
 	count++;
 
@@ -23,7 +22,6 @@ void sensorIncrement() {
 
 	//tænder for timer, sætter prescaler til 1024.
 	TCCR3B |= (1 << CS32) | (1 << CS30);
-  TCCR3B &= (1 << CS31);
 }
 
 // Sensor 1 interrupt
@@ -42,7 +40,7 @@ void sensorInit() {
   S_DDR &= ~((1 << S1_PIN) | (1 << S2_PIN)); 
 
   // enable pull up resistor
-  PORTD |= (1 << S1_PIN) | (1 << S2_PIN);
+  PORTD |= (1 << S1_PIN) | (1 << PD1);
 
   // Configure the trigger (rising edge)
   // INT0

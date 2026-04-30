@@ -4,7 +4,7 @@
 
 bool running = true;
 
-volatile uint8_t count = 0;
+volatile uint8_t count = 255;
 uint8_t lastCount = 255;
 
 void runTrack() {
@@ -14,50 +14,47 @@ void runTrack() {
     if (count != lastCount) {
       switch(count) {
         case 0:
-          // vent på input
+          //Start
+          motorSetSpeed(200);
           break;
         case 1:
-          //Start
+          //Før bakke
           motorSetSpeed(200);
           break;
         case 2:
           //Før bakke
-          motorSetSpeed(200);
+          motorSetSpeed(255);
           break;
         case 3:
-          //Før bakke
-          motorSetSpeed(150);
-          break;
-        case 4:
           //Top af bakke
           motorSetSpeed(100);
           break;
-        case 5:
+        case 4:
           //Efter bakke
           motorSetSpeed(200);
           break;
-        case 6:
+        case 5:
           //gør klar til stop
+          motorSetSpeed(150);
+          break;
+        case 6:
+          //Stop, og bak
+          motorSetDirection(false);
           motorSetSpeed(150);
           break;
         case 7:
           // bliv ved
           break;
-        case 8:
-          //Stop, og bak
-          motorSetDirection(false);
-          motorSetSpeed(150);
-          break;
-        case 9: // sensor 5 igen
+        case 8: // sensor 5 igen
           // Stop og kør frem igen
           motorSetDirection(true);
           motorSetSpeed(250);
           break;
-        case 10:
+        case 9:
           //klar til stop snart
           motorSetSpeed(200);
           break; 
-        case 11:
+        case 10:
           //STOP!
           _delay_ms(1500);
           motorSetSpeed(0);
@@ -68,11 +65,8 @@ void runTrack() {
           break;
         }
 
-        lastCount = count;
-      }
-    
-      // stop loopet (sikre at det hele er kørt)
-      // running = false;
+      lastCount = count;
+    }
   }
 }
 

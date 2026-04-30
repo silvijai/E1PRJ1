@@ -31,21 +31,6 @@ void motorTest() {
     }
 }
 
-
-
-void countDisplay() {
-    PORTB = (count & 0x0F);
-}
-
-void countInit() {
-	// Set all LED ports as outputs
-	DDRB = 0xFF;
-	// Turn off all LED's
-	PORTB = 0x00;
-
-	countDisplay();
-}
-
 void sensorTest() {
 	// Inits
 	sensorInit();
