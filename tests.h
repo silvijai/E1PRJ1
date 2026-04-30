@@ -6,7 +6,10 @@
 #include <stdbool.h>
 #include "motor.h"
 
+
 void motorTest(void);
 void sensorTest(void);
+void countDisplayInit(void);
+void countDisplay(void);
 
 #endif

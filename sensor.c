@@ -13,6 +13,8 @@ ISR(TIMER3_COMPA_vect) {
 
 //Incrementerer count og slukker for sensorne, starter timer til at starte dem igen.
 void sensorIncrement() {
+	countDisplay(); //TEST KODE SLET
+	
 	EIMSK &= ~((1 << INT0) | (1 << INT1)); //slukker for sensorne
 	count++;
 
