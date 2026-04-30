@@ -17,7 +17,7 @@ int main(void) {
 
   // Test scripts (Comment out when not in use)
   // motorTest();
-  // sensorTest()
+  // sensorTest();
 
   runTrack();
 
