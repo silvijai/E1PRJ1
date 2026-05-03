@@ -8,7 +8,7 @@ void motorTest() {
     PORTA |= (1 << PA2) | (1 << PA3);  // Enable internal Pull-ups
     
     bool direction = true;
-    uint8_t testSpeed = 0;
+    uint8_t testSpeed = 63;
 
     while (1) {
         // BUTTON 1: Change Direction

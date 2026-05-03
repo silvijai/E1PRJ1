@@ -8,26 +8,31 @@ void motorInit(void) {
 
   // Timer 1 configurations (Mode 5) (Based on setup on page 337 (figure 18) of AVR book)
   TCCR1A = (1 << WGM10); 
-  TCCR1B = (1 << WGM12) | (1 << CS11); // Prescaler 8
+  TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10); // Prescaler 64
  
   // Start by setting the speed to 0
   OCR1A = 0;
 }
 
 void motorSetSpeed(uint8_t s) {
-  speed = s;
+  // Only update if the speed actually changed
+  if (s == speed) return; 
 
   if (s == 0) {
     // Disconnect pin from timer
-    TCCR1A &= ~(1 << COM1A1);
-    OCR1A = 0;
+    TCCR1A &= ~(1 << COM1A1); // Disconnect pin from timer
     PWM_PORT &= ~(1 << PWM_PIN); // Force LOW (especially important to switch to reverse)
+    OCR1A = 0;
   } else {
-    // Connect timer to pin
-    TCCR1A |= (1 << COM1A1);
-
+    // Connect timer to pin, only if not already connected
+    if (speed == 0) {
+      TCCR1A |= (1 << COM1A1);
+    }
+    
     OCR1A = s;
   }
+
+  speed = s;
 }
 
 void motorSetDirection(bool forward) {

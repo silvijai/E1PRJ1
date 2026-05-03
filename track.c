@@ -1,10 +1,10 @@
 #include "track.h"
 #include "motor.h"
-#include "sensor.h" //nødvendigt for at få fat i count
+#include "sensor.h"
 
 bool running = true;
 
-volatile uint8_t count = 255;
+volatile uint8_t count = 0;
 uint8_t lastCount = 255;
 
 void runTrack() {
