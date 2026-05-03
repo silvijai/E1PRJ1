@@ -30,8 +30,13 @@ int main(void) {
 
   runTrack();
 
-  // Done
-  while(1) {
-    // finish here please :3
+  // Done (Celebration)
+  DDRB = 0xFF;
+
+  while(1) { 
+    for (int i = 0; i < 8; i++) {
+        PORTB = (1 << i);
+        _delay_ms(80);
+    }
   }
 }
