@@ -16,5 +16,6 @@
 extern volatile uint8_t count;
 
 void sensorInit(void);
+void sensorIncrement();
 
 #endif

@@ -8,8 +8,8 @@ volatile uint8_t count = 0;
 uint8_t lastCount = 255;
 
 void runTrack() {
-	while (running) {
-		//We make switch cases for all stages of the track
+  while (running) {
+  //We make switch cases for all stages of the track
     
     if (count != lastCount) {
       switch(count) {
@@ -66,7 +66,7 @@ void runTrack() {
         }
 
       lastCount = count;
-    }
+   }
   }
 }
 
