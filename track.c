@@ -15,19 +15,19 @@ void runTrack() {
       switch(count) {
         case 0:
           //Start
-          motorSetSpeed(200);
+          motorSetSpeed(255);
           break;
         case 1:
           //Før bakke
-          motorSetSpeed(200);
+          motorSetSpeed(255);
           break;
         case 2:
           //Før bakke
-          motorSetSpeed(255);
+          motorSetSpeed(200);
           break;
         case 3:
           //Top af bakke
-          motorSetSpeed(100);
+          motorSetSpeed(80);
           break;
         case 4:
           //Efter bakke
@@ -35,28 +35,31 @@ void runTrack() {
           break;
         case 5:
           //gør klar til stop
-          motorSetSpeed(150);
+          motorSetSpeed(180);
           break;
         case 6:
           //Stop, og bak
           motorSetDirection(false);
-          motorSetSpeed(150);
+		  motorSetSpeed(160);
           break;
         case 7:
+		  motorSetSpeed(180);
           // bliv ved
           break;
         case 8: // sensor 5 igen
           // Stop og kør frem igen
           motorSetDirection(true);
-          motorSetSpeed(250);
+          motorSetSpeed(200);
           break;
         case 9:
           //klar til stop snart
-          motorSetSpeed(200);
+          motorSetSpeed(255);
           break; 
         case 10:
+		  break;
+		case 11:
           //STOP!
-          _delay_ms(1500);
+          _delay_ms(1000);
           motorSetSpeed(0);
           running = false;
           break;
