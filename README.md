@@ -4,10 +4,10 @@ A project for first semester of Diplominginiør i Softwareteknologi. This code w
 
 ## Current implimentation
 - [ ] Lights
-- [ ] Motor
-- [ ] Sensors
+- [X] Motor
+- [X] Sensors
 - [ ] Speaker
-- [ ] Track driving ability
+- [X] Track driving ability
 
 ## How to use
 Either build and flash using MPLAB or using AVRDUDE and AVR-GCC (Makefile included).
