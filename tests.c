@@ -34,27 +34,23 @@ void motorTest() {
 
 void initLightTest() {
 	// DDRB (Data Direction Register B) - Set PB5 (Pin 11) as OUTPUT
-	DDRB |= (1 << PB5);
-  DDRB |= (1 << PB4);
-  
+  DDRB |= (1 << PB4) | (1 << PB5);
+
   // TCCR1A (Timer/Counter Control Register 1 A)
 	// Fast PWM, 8-bit (Mode 5), Clear OC1A on Compare Match
 	TCCR1A = (1 << COM1A1) | (1 << WGM10);
 	TCCR1B = (1 << WGM12) | (1 << CS11); // Mode 5 (Part 2) + Prescaler 8
 
-  TCCR2A = (1 << COM2A1) | (1 << WGM21) | (1 << WGM20);
-  TCCR2B = (1 << CS21);
   // OCR1A (Output Compare Register 1 A) - Initializing duty cycle to 0
 	OCR1A = 0;
-  OCR2A = 0;
 }
 
 void lightTest() {
   initLightTest();
   // Setup Input Buttons (PA2, PA3)
   DDRA &= ~((1 << PA2) | (1 << PA3) | (1 << PA4) | (1 << PA5)); // Set as Inputs
-  PORTA |= (1 << PA2) | (1 << PA3);   // Enable internal Pull-ups
-
+  PORTA |= (1 << PA2) | (1 << PA3) | (1 << PA4) | (1 << PA5);   // Enable internal Pull-ups
+  DDRB |= 0x0F;
 
   while (1) {
     // BUTTON Turn on
@@ -73,21 +69,19 @@ void lightTest() {
       TCCR1A &= ~(1 << COM1A1); // Disconnect PWM to be safe
       while (!(PINA & (1 << PA3)));
     }
-  }
-  
-  if (!(PINA & (1 << PA4))) {
-    // Button 1: Full Power
-    _delay_ms(50);
-    TCCR2A |= (1 << COM2A1); // Ensure pin is connected to PWM
-    OCR2A = 120;
-    while (!(PINA & (1 << PA4)));
-  }
 
-  if (!(PINA & (1 << PA5))) { // Button 2: Turn OFF
-    _delay_ms(50);
-    OCR2A = 0;
-    TCCR2A &= ~(1 << COM2A1); // Disconnect PWM to be safe
-    while (!(PINA & (1 << PA5)));
+    // Turn on
+    if (!(PINA & (1 << PA4))) {
+      _delay_ms(50);
+      PORTB &= ~(1 << PB4);
+      while (!(PINA & (1 << PA4)));
+    }
+
+    if (!(PINA & (1 << PA5))) { // Button 2: Turn OFF
+      _delay_ms(50);
+      PORTB |= (1 << PB4);
+      while (!(PINA & (1 << PA5)));
+    }
   }
 }
 
