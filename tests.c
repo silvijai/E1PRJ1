@@ -56,10 +56,10 @@ void lightTest() {
   PORTA |= (1 << PA2) | (1 << PA3);   // Enable internal Pull-ups
 
 
-  while (1)
+  while (1) {
     // BUTTON Turn on
     if (!(PINA & (1 << PA2))) {
-    // Button 1: Full Power
+      // Button 1: Full Power
       _delay_ms(50);
       TCCR1A |= (1 << COM1A1); // Ensure pin is connected to PWM
       OCR1A = 255;
@@ -72,6 +72,7 @@ void lightTest() {
       OCR1A = 0;
       TCCR1A &= ~(1 << COM1A1); // Disconnect PWM to be safe
       while (!(PINA & (1 << PA3)));
+    }
   }
 }
 
