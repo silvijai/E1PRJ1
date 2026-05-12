@@ -31,6 +31,45 @@ void motorTest() {
     }
 }
 
+
+void initLightTest() {
+	// DDRB (Data Direction Register B) - Set PB5 (Pin 11) as OUTPUT
+	DDRB |= (1 << PB5);
+
+	// TCCR1A (Timer/Counter Control Register 1 A)
+	// Fast PWM, 8-bit (Mode 5), Clear OC1A on Compare Match
+	TCCR1A = (1 << COM1A1) | (1 << WGM10);
+	TCCR1B = (1 << WGM12) | (1 << CS11); // Mode 5 (Part 2) + Prescaler 8
+	
+	// OCR1A (Output Compare Register 1 A) - Initializing duty cycle to 0
+	OCR1A = 0;
+}
+
+void lightTest() {
+  initLightTest();
+  // Setup Input Buttons (PA2, PA3)
+  DDRA &= ~((1 << PA2) | (1 << PA3)); // Set as Inputs
+  PORTA |= (1 << PA2) | (1 << PA3);   // Enable internal Pull-ups
+
+
+  while (1)
+    {
+    // BUTTON Turn on
+    if (!(PINA & (1 << PA2)))
+    {
+      _delay_ms(50);
+      OCR1A = 255; //TURN ON
+      while (!(PINA & (1 << PA2)))
+        ; // Wait for release
+      _delay_ms(50);
+    }
+    else {
+      OCR1A = 0; //TURN OFF
+    }
+  }
+}
+
+
 void sensorTest() {
 	// Inits
 	sensorInit();
@@ -49,7 +88,5 @@ void sensorTest() {
 		else {
 			PORTB = 0x00;
 		}
-
-		// finish here please :3
 	}
 }

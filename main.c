@@ -18,6 +18,7 @@ int main(void) {
   // Test scripts (Comment out when not in use)
   // motorTest();
   // sensorTest();
+  lightTest();
 
   // Start on button press
   // Setup SW1 as input

@@ -4,7 +4,7 @@
 // Timer interrupt
 ISR(TIMER3_COMPA_vect) {
 	//Slukker sig selv
-	TCCR3B &= ~((1 << CS32) | (1 << CS32) | (1 << CS30));
+	TCCR3B &= ~((1 << CS32) | (1 << CS30));
 	EIFR |= (1 << INTF0) | (1 << INTF1);
 
 	//Tænder for sensor
@@ -57,7 +57,7 @@ void sensorInit() {
 	//Timer 3 setup:
 	TCCR3B |= (1 << WGM32); //CTC on
 	TIMSK3 |= (1 << OCIE3A); //Timer3 Compare Match A interrupt yuck
-	OCR3A = 7812; //Værdi på ca 500ms  ((delay*Fcpu/)prescaler)
+	OCR3A = 7812; //Værdi på ca 500ms  ((delay*Fcpu)/prescaler)
 
 
   // Global interrupt enable
