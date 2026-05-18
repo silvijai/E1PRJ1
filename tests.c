@@ -1,5 +1,6 @@
 #include "motor.h"
 #include "sensor.h"
+#include "uart.h"
 // Test functions, for testing the component seperately from the rest of the loop
 
 void motorTest() {
@@ -105,5 +106,34 @@ void sensorTest() {
 		else {
 			PORTB = 0x00;
 		}
+	}
+}
+
+void soundTest() {
+  // Venter på SOMO startup
+	_delay_ms(3000);
+  
+	// Volume = 20
+	sendCommand(0x06, 0x00, 0x00, 50);
+	_delay_ms(500);
+
+	// SINGLE PLAY MODE
+	sendCommand(0x19, 0x00, 0x00, 0x01);
+	_delay_ms(1000);
+
+	// PLAY 001.mp3
+	sendCommand(0x03, 0x00, 0x00, 0x01);
+	_delay_ms(1000);
+
+	// PLAY 003.mp3
+	sendCommand(0x03, 0x00, 0x00, 0x02);
+
+	_delay_ms(1000);
+	// PLAY 005.mp3
+	sendCommand(0x03, 0x00, 0x00, 0x03);
+
+	while (1)
+	{
+
 	}
 }

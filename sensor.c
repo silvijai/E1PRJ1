@@ -1,4 +1,5 @@
 #include "sensor.h"
+#include "sound.h"
 #include <avr/interrupt.h>
 
 // Timer interrupt
@@ -13,7 +14,6 @@ ISR(TIMER3_COMPA_vect) {
 
 //Incrementerer count og slukker for sensorne, starter timer til at starte dem igen.
 void sensorIncrement() {
-
 	EIMSK &= ~((1 << INT0) | (1 << INT1)); //slukker for sensorne
 	count++;
 

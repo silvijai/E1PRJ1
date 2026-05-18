@@ -9,16 +9,19 @@
 #include "motor.h"
 #include "track.h"
 #include "sensor.h"
+#include "sound.h"
 
 int main(void) {
   // Inits
   motorInit();
   sensorInit();
+  soundInit();
 
   // Test scripts (Comment out when not in use)
   // motorTest();
   // sensorTest();
-  lightTest();
+  // lightTest();
+  // soundTest();
 
   // Start on button press
   // Setup SW1 as input
@@ -29,7 +32,14 @@ int main(void) {
 
   _delay_ms(200);
 
+  playSound(1);
+
+  // Delay for start sound
+  _delay_ms(2000);
+
   runTrack();
+
+  playSound(3);
 
   // Done
   while(1) { 

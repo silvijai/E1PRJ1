@@ -5,8 +5,6 @@
 #include <util/delay.h>
 #include <stdbool.h>
 #include <stdint.h>
-// Reference til lyd i fremtiden
-// #include "sound.h"
 
 #define S_DDR DDRD
 #define S_PORT PORTD

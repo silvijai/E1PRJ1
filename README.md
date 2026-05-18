@@ -6,7 +6,7 @@ A project for first semester of Diplominginiør i Softwareteknologi. This code w
 - [ ] Lights
 - [X] Motor
 - [X] Sensors
-- [ ] Speaker
+- [X] Speaker
 - [X] Track driving ability
 
 ## How to use
