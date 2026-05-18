@@ -1,6 +1,7 @@
 #include "track.h"
 #include "motor.h"
 #include "sensor.h"
+#include "sound.h"
 
 bool running = true;
 
