@@ -10,12 +10,14 @@
 #include "track.h"
 #include "sensor.h"
 #include "sound.h"
+#include "light.h"
 
 int main(void) {
   // Inits
   motorInit();
   sensorInit();
   soundInit();
+  initLight();
 
   // Test scripts (Comment out when not in use)
   // motorTest();
