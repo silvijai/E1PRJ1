@@ -23,9 +23,9 @@ void lightStart(void)
   OCR4A = LIGHT_FULL_FRONT;
   OCR4B = LIGHT_HALF;
 
-  TCCR4A |= (1 << COM1A1);
-  // TCCR4B |= (1 << COM1A1);
-  TCCR4B &= ~(1 << COM1A1);
+  TCCR4A |= (1 << COM4A1);
+  // TCCR4B |= (1 << COM4A1);
+  TCCR4B &= ~(1 << COM4A1);
 }
 
 void lightForward(void)
@@ -33,8 +33,8 @@ void lightForward(void)
   OCR4A = LIGHT_FULL_FRONT;
   OCR4B = LIGHT_HALF;
 
-  TCCR4A |= (1 << COM1A1);
-  TCCR4B |= (1 << COM1A1);
+  TCCR4A |= (1 << COM4A1);
+  TCCR4B |= (1 << COM4B1);
 }
 
 void lightReverse(void)
@@ -42,8 +42,8 @@ void lightReverse(void)
   OCR4A = LIGHT_FULL_FRONT;
   OCR4B = LIGHT_FULL_BACK;
 
-  TCCR4A |= (1 << COM1A1);
-  TCCR4B |= (1 << COM1A1);
+  TCCR4A |= (1 << COM4A1);
+  TCCR4B |= (1 << COM4B1);
 }
 
 void lightOff(void)
@@ -51,6 +51,6 @@ void lightOff(void)
   OCR4A = LIGHT_OFF;
   OCR4B = LIGHT_OFF;
 
-  TCCR4A &= ~(1 << COM1A1); // Disconnect PWM to be safe
-  TCCR4B &= ~(1 << COM1A1); // Disconnect PWM to be safe
+  TCCR4A &= ~(1 << COM4A1); // Disconnect PWM to be safe
+  TCCR4B &= ~(1 << COM4B1); // Disconnect PWM to be safe
 }
