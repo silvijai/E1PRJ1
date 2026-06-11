@@ -3,7 +3,7 @@
 A project for first semester of Diplominginiør i Softwareteknologi. This code was written for a custom vehicle built to run on a small test track. Was used for semester project.
 
 ## Current implimentation
-- [ ] Lights
+- [X] Lights
 - [X] Motor
 - [X] Sensors
 - [X] Speaker
