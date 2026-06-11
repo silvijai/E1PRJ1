@@ -51,15 +51,23 @@ void lightTest() {
   // Setup Input Buttons (PA2, PA3)
   DDRA &= ~((1 << PA2) | (1 << PA3) | (1 << PA4) | (1 << PA5)); // Set as Inputs
   PORTA |= (1 << PA2) | (1 << PA3) | (1 << PA4) | (1 << PA5);   // Enable internal Pull-ups
-  DDRB |= 0x0F;
+
+  DDRH |= (1 << PH3) | (1 << PH4);
+
+  TCCR4A = (1 << COM4A1) | (1 << COM4B1) | (1 << WGM40);
+  TCCR4B = (1 << WGM42) | (1 << CS41);
+
 
   while (1) {
     // BUTTON Turn on
     if (!(PINA & (1 << PA2))) {
       // Button 1: Full Power
       _delay_ms(50);
-      TCCR1A |= (1 << COM1A1); // Ensure pin is connected to PWM
-      OCR1A = 120;
+
+      TCCR4A |= (1 << COM1A1); // Ensure pin is connected to PWM
+      TCCR4B |= (1 << COM1A1); // Ensure pin is connected to PWM
+      OCR4A = 110;
+      OCR4B = 110;
       while (!(PINA & (1 << PA2)));
     }
 
@@ -67,7 +75,8 @@ void lightTest() {
     { // Button 2: Turn OFF
       _delay_ms(50);
       OCR1A = 0;
-      TCCR1A &= ~(1 << COM1A1); // Disconnect PWM to be safe
+      TCCR4A &= ~(1 << COM1A1); // Disconnect PWM to be safe
+      TCCR4B &= ~(1 << COM1A1); // Disconnect PWM to be safe
       while (!(PINA & (1 << PA3)));
     }
 

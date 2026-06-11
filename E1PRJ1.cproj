@@ -123,6 +123,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="light.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="light.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
@@ -138,6 +144,12 @@
     <Compile Include="sensor.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="sound.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="sound.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="tests.c">
       <SubType>compile</SubType>
     </Compile>
@@ -148,6 +160,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="track.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="uart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="uart.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

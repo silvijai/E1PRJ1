@@ -18,7 +18,7 @@ void runTrack() {
         case 0:
           //Start
           motorSetSpeed(255);
-			lightStart();
+    			lightStart();
           break;
         case 1:
           //Før bakke
@@ -48,7 +48,7 @@ void runTrack() {
         case 6:
           //Stop, og bak
           motorSetDirection(false);
-			lightReverse();
+	    		lightReverse();
 		      motorSetSpeed(160);
           playSound(2);
           break;
@@ -59,7 +59,7 @@ void runTrack() {
         case 8: // sensor 5 igen
           // Stop og kør frem igen
           motorSetDirection(true);
-			lightForward();
+			    lightForward();
           motorSetSpeed(200);
           playSound(2);
           break;
@@ -74,7 +74,7 @@ void runTrack() {
           //STOP!
           playSound(2);
           _delay_ms(1000);
-				lightOff();
+		  		lightOff();
           motorSetSpeed(0);
           running = false;
           break;

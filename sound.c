@@ -4,6 +4,9 @@
 #include "uart.h"
 
 void soundInit() {
+  // Delay for somo to wake
+  _delay_ms(2000);
+
   initUART();
 
   // single play mode

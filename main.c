@@ -28,16 +28,13 @@ int main(void) {
   // Start on button press
   // Setup SW1 as input
   DDRA &= ~(1 << 1);
-  
+
   // Wait for button press
   while (PINA & (1 << 1)); 
 
   _delay_ms(200);
 
   playSound(1);
-
-  // Delay for start sound
-  _delay_ms(2000);
 
   runTrack();
 
