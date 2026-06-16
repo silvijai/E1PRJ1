@@ -1,6 +1,7 @@
 #include "motor.h"
 #include "sensor.h"
 #include "uart.h"
+#include "light.h"
 // Test functions, for testing the component seperately from the rest of the loop
 
 void motorTest() {
@@ -32,68 +33,26 @@ void motorTest() {
     }
 }
 
-
-void initLightTest() {
-	// DDRB (Data Direction Register B) - Set PB5 (Pin 11) as OUTPUT
-  DDRB |= (1 << PB4) | (1 << PB5);
-
-  // TCCR1A (Timer/Counter Control Register 1 A)
-	// Fast PWM, 8-bit (Mode 5), Clear OC1A on Compare Match
-	TCCR1A = (1 << COM1A1) | (1 << WGM10);
-	TCCR1B = (1 << WGM12) | (1 << CS11); // Mode 5 (Part 2) + Prescaler 8
-
-  // OCR1A (Output Compare Register 1 A) - Initializing duty cycle to 0
-	OCR1A = 0;
-}
-
 void lightTest() {
-  initLightTest();
-  // Setup Input Buttons (PA2, PA3)
-  DDRA &= ~((1 << PA2) | (1 << PA3) | (1 << PA4) | (1 << PA5)); // Set as Inputs
-  PORTA |= (1 << PA2) | (1 << PA3) | (1 << PA4) | (1 << PA5);   // Enable internal Pull-ups
-
-  DDRH |= (1 << PH3) | (1 << PH4);
-
-  TCCR4A = (1 << COM4A1) | (1 << COM4B1) | (1 << WGM40);
-  TCCR4B = (1 << WGM42) | (1 << CS41);
-
-
-  while (1) {
-    // BUTTON Turn on
-    if (!(PINA & (1 << PA2))) {
-      // Button 1: Full Power
-      _delay_ms(50);
-
-      TCCR4A |= (1 << COM1A1); // Ensure pin is connected to PWM
-      TCCR4B |= (1 << COM1A1); // Ensure pin is connected to PWM
-      OCR4A = 110;
-      OCR4B = 110;
-      while (!(PINA & (1 << PA2)));
+    initLight();
+    
+    while(1) {
+        // Button 1: Gennemkører alle lysstadier
+        if (!(PINA & (1 << PA2))) {
+            _delay_ms(50);
+            lightStart();
+            _delay_ms(4000);
+            lightReverse();
+            _delay_ms(4000);
+            lightForward();
+            _delay_ms(4000);
+            lightOff();
+            _delay_ms(4000);
+            while (!(PINA & (1 << PA2)));
+        }
     }
-
-    if (!(PINA & (1 << PA3)))
-    { // Button 2: Turn OFF
-      _delay_ms(50);
-      OCR1A = 0;
-      TCCR4A &= ~(1 << COM1A1); // Disconnect PWM to be safe
-      TCCR4B &= ~(1 << COM1A1); // Disconnect PWM to be safe
-      while (!(PINA & (1 << PA3)));
-    }
-
-    // Turn on
-    if (!(PINA & (1 << PA4))) {
-      _delay_ms(50);
-      PORTB &= ~(1 << PB4);
-      while (!(PINA & (1 << PA4)));
-    }
-
-    if (!(PINA & (1 << PA5))) { // Button 2: Turn OFF
-      _delay_ms(50);
-      PORTB |= (1 << PB4);
-      while (!(PINA & (1 << PA5)));
-    }
-  }
 }
+
 
 
 
