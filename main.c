@@ -30,8 +30,7 @@ int main(void) {
   DDRA &= ~(1 << 1);
 
   // Wait for button press
-  while (PINA & (1 << 1))
-    ;
+  while (PINA & (1 << 1));
 
   playSound(1);
 
