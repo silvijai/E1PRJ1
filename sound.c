@@ -1,13 +1,15 @@
-#include <avr/io.h>
-#include <stdint.h>
 #include "sound.h"
 #include "uart.h"
+#include <avr/io.h>
+#include <stdint.h>
 
 void soundInit() {
   // Delay for somo to wake
   _delay_ms(2000);
 
   initUART();
+
+  _delay_ms(1000);
 
   // single play mode
   sendCommand(0x19, 0x00, 0x00, 0x01);
@@ -16,10 +18,6 @@ void soundInit() {
 }
 
 // max volume 30 (default on startup 20)
-void setVolume(uint8_t volume) {
-  sendCommand(0x06, 0x00, 0x00, volume);
-}
+void setVolume(uint8_t volume) { sendCommand(0x06, 0x00, 0x00, volume); }
 
-void playSound(uint8_t index) {
-  sendCommand(0x03, 0x00, 0x00, index);
-}
+void playSound(uint8_t index) { sendCommand(0x03, 0x00, 0x00, index); }

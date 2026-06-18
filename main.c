@@ -1,16 +1,16 @@
-#include <avr/io.h>
 #include <avr/interrupt.h>
+#include <avr/io.h>
 #define F_CPU 16000000UL
-#include <util/delay.h>
 #include <stdbool.h>
+#include <util/delay.h>
 
 // drivers
-#include "tests.h"
+#include "light.h"
 #include "motor.h"
-#include "track.h"
 #include "sensor.h"
 #include "sound.h"
-#include "light.h"
+#include "tests.h"
+#include "track.h"
 
 int main(void) {
   // Inits
@@ -30,9 +30,8 @@ int main(void) {
   DDRA &= ~(1 << 1);
 
   // Wait for button press
-  while (PINA & (1 << 1)); 
-
-  _delay_ms(200);
+  while (PINA & (1 << 1))
+    ;
 
   playSound(1);
 
@@ -42,7 +41,7 @@ int main(void) {
   playSound(3);
 
   // Done
-  while(1) { 
+  while (1) {
     // Finish here :3
   }
 }
