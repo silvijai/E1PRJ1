@@ -32,12 +32,15 @@ void runTrack() {
         break;
       case 3:
         // Top af bakke
-        motorSetSpeed(80);
+        motorSetSpeed(110);
         playSound(2);
         break;
       case 4:
         // Efter bakke
         motorSetSpeed(200);
+        playSound(2);
+        break;
+      case 5:
         playSound(2);
         break;
       case 6:
@@ -69,16 +72,12 @@ void runTrack() {
         playSound(2);
         break;
       case 11:
-        break;
-      case 12:
         // STOP!
         playSound(2);
         _delay_ms(1000);
         lightOff();
         motorSetSpeed(0);
         running = false;
-        break;
-        // kør fremad
         break;
       }
 

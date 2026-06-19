@@ -34,9 +34,12 @@ int main(void) {
 
   playSound(1);
 
+  _delay_ms(200);
+
   runTrack();
 
   _delay_ms(500);
+
   playSound(3);
 
   // Done
